@@ -6,7 +6,7 @@ import org.models.User;
 public class RemoveExpenseService implements RemoveExpense {
 
     @Override
-    public void removeExpense(User user){
+    public void removeExpense(User user) {
 
     }
 }

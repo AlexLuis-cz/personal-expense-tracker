@@ -1,42 +1,50 @@
 package org.models;
 
-import java.util.ArrayList;
+import org.repository.ExpenseRepository;
 
 public class User {
 
-    private String name;
-    private ArrayList<Expense> expense;
+    private ExpenseRepository expenseRepository;
+    private ExpenseMeter expenseMeter;
     private double limitMonth;
+    private final double originalLimit;
 
-    public User(String name, double limitMonth){
-        this.name = name;
+    public User(double limitMonth) {
         this.limitMonth = limitMonth;
+        this.originalLimit = limitMonth;
     }
 
     //Getters
-    public String getName(){
-        return this.name;
+    public ExpenseRepository getExpenseRepository() {
+        return expenseRepository;
     }
 
     public double getLimitMonth() {
         return limitMonth;
     }
 
+    public ExpenseMeter getExpenseMeter() {
+        return expenseMeter;
+    }
 
-    public ArrayList<Expense> getExpense() {
-        return expense;
+    public double getOriginalLimit() {
+        return originalLimit;
     }
 
     //Setters
-    public void setExpense(ArrayList<Expense> expense) {
-        this.expense = expense;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setExpenseRepository(ExpenseRepository expenseRepository) {
+        this.expenseRepository = expenseRepository;
     }
 
     public void setLimitMonth(double limitMonth) {
         this.limitMonth = limitMonth;
+
+        if (this.limitMonth <= 0) {
+            this.expenseMeter = ExpenseMeter.DANGER;
+        } else if (this.limitMonth <= originalLimit / 2) {
+            this.expenseMeter = ExpenseMeter.ALERT;
+        } else {
+            this.expenseMeter = ExpenseMeter.SAVE;
+        }
     }
 }

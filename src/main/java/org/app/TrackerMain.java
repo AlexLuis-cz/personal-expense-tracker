@@ -1,4 +1,5 @@
 package org.app;
+
 import org.controller.MenuController;
 
 public class TrackerMain {

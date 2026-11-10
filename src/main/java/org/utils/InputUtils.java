@@ -6,32 +6,28 @@ import java.util.Scanner;
 public class InputUtils {
     private static final Scanner INPUT = new Scanner(System.in);
 
-    public static int returnInt(){
-
-        //arrumar bug de loop no menu ao digitar valor invalido.
-
-
-
-
+    public static int returnInt() {
         try {
             return INPUT.nextInt();
-        }catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("Digite um valor correto");
+            INPUT.nextLine();
         }
-        return 401;
+        return returnInt();
     }
 
-    public static String returnString(){
+    public static String returnString() {
         return INPUT.nextLine();
     }
 
-    public static double returnDouble(){
+    public static double returnDouble() {
         try {
             return INPUT.nextDouble();
-        }catch (InputMismatchException e){
-            System.out.println("Digite um valor correto");
+        } catch (InputMismatchException e) {
+            System.out.print("Digite um valor correto:");
+            INPUT.nextLine();
         }
-        return 0;
+        return returnDouble();
     }
 
 }

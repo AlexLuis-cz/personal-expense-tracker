@@ -11,8 +11,9 @@ public class Menu {
                         
                         1: register expense\
                         
-                        2: Remove expense""");
-
+                        2: Remove expense\
+                        
+                        3: show expenses""");
 
         return InputUtils.returnInt();
     }
