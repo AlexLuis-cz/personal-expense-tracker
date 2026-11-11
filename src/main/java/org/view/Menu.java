@@ -5,7 +5,7 @@ import org.utils.InputUtils;
 public class Menu {
 
     public static int menuList() {
-        System.out.println(
+        System.out.print(
                 """
                         0: Exit\
                         
@@ -13,7 +13,11 @@ public class Menu {
                         
                         2: Remove expense\
                         
-                        3: show expenses""");
+                        3: Show expenses\
+                        
+                        4: Show limit
+                        
+                        Option:""");
 
         return InputUtils.returnInt();
     }

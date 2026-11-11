@@ -24,6 +24,9 @@ public class User {
     }
 
     public ExpenseMeter getExpenseMeter() {
+        if(expenseMeter == null){
+            expenseMeter = ExpenseMeter.SAVE;
+        }
         return expenseMeter;
     }
 
@@ -46,5 +49,14 @@ public class User {
         } else {
             this.expenseMeter = ExpenseMeter.SAVE;
         }
+    }
+
+    @Override
+    public String toString(){
+        return String.format("---------------------%n" +
+                "Limit alert:%s %n" +
+                "Limit:%.2f%n" +
+                "Total spent:%.2f%n" +
+                "---------------------%n", this.getExpenseMeter(), this.limitMonth, (this.originalLimit - this.limitMonth));
     }
 }

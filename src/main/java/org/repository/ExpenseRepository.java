@@ -26,10 +26,13 @@ public class ExpenseRepository {
             System.out.printf("%d. %s %s R$ %.2f%n", ++contador, expense.getDescription(), expense.getCategory(), expense.getValue());
         }
         System.out.println("-------");
+    }
 
-        System.out.printf("Limit alert:%s %n" +
-                "Limit:%.2f%n" +
-                "Total spent:%.2f%n", user.getExpenseMeter(), user.getLimitMonth(), (user.getOriginalLimit() - user.getLimitMonth()));
-        System.out.println("-------");
+    public void removeExpenseForIndex(int i, User user){
+        //
+        user.setLimitMonth(user.getLimitMonth() + this.expenses.get(i).getValue());
+
+        System.out.printf("Expense:%s removed%n",expenses.get(i).getDescription());
+        this.expenses.remove(i);
     }
 }

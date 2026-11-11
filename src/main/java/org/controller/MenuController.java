@@ -26,6 +26,8 @@ public class MenuController {
             optionMenu = Menu.menuList();
 
             switch (optionMenu) {
+                case 0:
+                    break;
                 case 1:
                     InputUtils.returnString();
                     registerExpenseService.register(user);
@@ -36,8 +38,11 @@ public class MenuController {
                 case 3:
                     expenseRepository.listExpenses(user);
                     break;
+                case 4:
+                    System.out.print(user);
+                    break;
                 default:
-                    System.out.println("valor invalido");
+                    System.out.printf("valor invalido%n");
                     break;
             }
         }
