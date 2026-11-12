@@ -16,15 +16,20 @@ public class RegisterExpenseService implements RegisterExpense {
 
         System.out.print("Category:");
         String category = InputUtils.returnString();
-        category = category.substring(0, 1).toUpperCase() + category.substring(1);
 
         System.out.print("Value:");
         double value = InputUtils.returnDouble();
+
+        while (value <= 0) {
+            System.out.println("It is not possible to enter numbers equal to or below zero.");
+            System.out.print("Value:");
+            value = InputUtils.returnDouble();
+        }
 
         //Expense registration with (Description, Category, Value, Monthly Limit, Current Data)
         Expense expense = new Expense(description, category, value, LocalDate.now());
         user.setLimitMonth(user.getLimitMonth() - expense.getValue());
 
-        user.getExpenseRepository().setExpenses(expense);
+        user.getExpenseRepository().addExpense(expense);
     }
 }

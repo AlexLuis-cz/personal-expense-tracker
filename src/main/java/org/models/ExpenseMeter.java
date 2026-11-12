@@ -1,7 +1,7 @@
 package org.models;
 
 public enum ExpenseMeter {
-    SAVE,
+    SAVE{},
     ALERT,
     DANGER;
 

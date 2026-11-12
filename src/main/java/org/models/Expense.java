@@ -1,12 +1,14 @@
 package org.models;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Expense {
     private String description;
     private String category;
     private double value;
     private final LocalDate LOCAL_DATE;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Expense(String description, String category, double value, LocalDate LOCAL_DATE) {
         this.description = description;
@@ -28,8 +30,9 @@ public class Expense {
         return value;
     }
 
-    public LocalDate getLOCAL_DATE() {
-        return LOCAL_DATE;
+    public String getLOCAL_DATE() {
+        String dataFormat = formatter.format(this.LOCAL_DATE);
+        return dataFormat;
     }
 
     //Setters
@@ -47,6 +50,6 @@ public class Expense {
 
     @Override
     public String toString() {
-        return String.format("%s %s R$ %.2f", this.description, this.category, this.value);
+        return String.format("%s %s R$ %.2f %s", this.description, this.category, this.value, this.getLOCAL_DATE());
     }
 }
