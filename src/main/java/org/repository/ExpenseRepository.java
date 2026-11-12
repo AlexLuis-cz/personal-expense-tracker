@@ -9,13 +9,26 @@ import java.util.List;
 public class ExpenseRepository {
 
     private List<Expense> expenses = new ArrayList<Expense>();
+    private Expense biggestExpense;
 
     public List<Expense> getExpenses() {
         return expenses;
     }
 
-    public void setExpenses(Expense expenses) {
-        this.expenses.add(expenses);
+    public void setBiggestExpense(Expense biggestExpense) {
+        this.biggestExpense = biggestExpense;
+    }
+
+    public void setExpenses(Expense expense) {
+        if (this.expenses.isEmpty()) {
+            this.biggestExpense = expense;
+        }
+
+        if (expense.getValue() > biggestExpense.getValue()) {
+            this.biggestExpense = expense;
+        }
+
+        this.expenses.add(expense);
     }
 
     public void listExpenses(User user) {
@@ -23,16 +36,34 @@ public class ExpenseRepository {
         System.out.println("-------");
         System.out.println("Expense:");
         for (Expense expense : user.getExpenseRepository().getExpenses()) {
-            System.out.printf("%d. %s %s R$ %.2f%n", ++contador, expense.getDescription(), expense.getCategory(), expense.getValue());
+            System.out.println(++contador + ". " + expense);
         }
+        System.out.println("-------");
+        if (user.getExpenseRepository() == null) return;
+
+        System.out.printf("Most expensive expense:%s%n" +
+                        "Category:%s%n" +
+                        "value:%.2f%n"
+                , user.getExpenseRepository().biggestExpense.getDescription(),
+                user.getExpenseRepository().biggestExpense.getCategory(), user.getExpenseRepository().biggestExpense.getValue());
         System.out.println("-------");
     }
 
-    public void removeExpenseForIndex(int i, User user){
+    public void removeExpenseForIndex(int index, User user) {
         //
-        user.setLimitMonth(user.getLimitMonth() + this.expenses.get(i).getValue());
+        user.setLimitMonth(user.getLimitMonth() + this.expenses.get(index).getValue());
+        this.expenses.remove(index);
 
-        System.out.printf("Expense:%s removed%n",expenses.get(i).getDescription());
-        this.expenses.remove(i);
+        if (expenses.size() == 1) {
+            this.biggestExpense = expenses.get(0);
+        } else {
+            this.biggestExpense = expenses.get(0);
+
+            for (Expense expense : getExpenses()) {
+                if (expense.getValue() > biggestExpense.getValue()) {
+                    biggestExpense = expense;
+                }
+            }
+        }
     }
 }

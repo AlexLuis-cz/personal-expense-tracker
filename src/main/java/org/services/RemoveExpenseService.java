@@ -15,6 +15,8 @@ public class RemoveExpenseService implements RemoveExpense {
         System.out.print("Number:");
         int number = InputUtils.returnInt();
 
+        //removendo
+        System.out.printf("Expense:%s removed%n", user.getExpenseRepository().getExpenses().get(number - 1).getDescription());
         user.getExpenseRepository().removeExpenseForIndex(number - 1, user);
     }
 }

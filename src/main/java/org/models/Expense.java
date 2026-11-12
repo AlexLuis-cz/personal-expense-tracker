@@ -44,4 +44,9 @@ public class Expense {
     public void setValue(double value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s R$ %.2f", this.description, this.category, this.value);
+    }
 }

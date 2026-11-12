@@ -16,7 +16,6 @@ public class Menu {
                         3: Show expenses\
                         
                         4: Show limit
-                        
                         Option:""");
 
         return InputUtils.returnInt();
