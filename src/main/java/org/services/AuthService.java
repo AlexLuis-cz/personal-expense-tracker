@@ -2,7 +2,6 @@ package org.services;
 
 import org.models.User;
 import org.repository.ExpenseRepository;
-import org.repository.UserRepository;
 import org.utils.InputUtils;
 
 public class AuthService {
@@ -11,7 +10,7 @@ public class AuthService {
         System.out.print("Enter the monthly limit:");
         double limitMonth = InputUtils.returnDouble();
 
-        if(limitMonth <= 0){
+        if (limitMonth <= 0) {
             System.out.println("Invalid value");
             createAccount();
         }
@@ -20,7 +19,6 @@ public class AuthService {
         ExpenseRepository expenseRepository = new ExpenseRepository();
         user.setExpenseRepository(expenseRepository);
 
-        UserRepository.setUsers(user);
         return user;
     }
 }

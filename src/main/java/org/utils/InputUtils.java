@@ -10,7 +10,7 @@ public class InputUtils {
         try {
             return INPUT.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("Digite um valor correto");
+            System.out.println("Enter a correct value");
             INPUT.nextLine();
         }
         return returnInt();
@@ -24,7 +24,7 @@ public class InputUtils {
         try {
             return INPUT.nextDouble();
         } catch (InputMismatchException e) {
-            System.out.print("Digite um valor correto:");
+            System.out.print("Enter a correct value:");
             INPUT.nextLine();
         }
         return returnDouble();

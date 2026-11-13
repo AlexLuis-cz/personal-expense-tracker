@@ -12,6 +12,7 @@ public class User {
     public User(double limitMonth) {
         this.limitMonth = limitMonth;
         this.originalLimit = limitMonth;
+        expenseMeter = ExpenseMeter.SAVE;
     }
 
     //Getters
@@ -24,14 +25,7 @@ public class User {
     }
 
     public ExpenseMeter getExpenseMeter() {
-        if (expenseMeter == null) {
-            expenseMeter = ExpenseMeter.SAVE;
-        }
         return expenseMeter;
-    }
-
-    public double getOriginalLimit() {
-        return originalLimit;
     }
 
     //Setters
@@ -39,16 +33,14 @@ public class User {
         this.expenseRepository = expenseRepository;
     }
 
-    public void setLimitMonth(double limitMonth) {
-        this.limitMonth = limitMonth;
+    public void reduceLimitMonth(double expenseValue) {
+        this.limitMonth -= expenseValue;
+        this.expenseMeter = ExpenseMeter.value(this.limitMonth, originalLimit);
+    }
 
-        if (this.limitMonth <= 0) {
-            this.expenseMeter = ExpenseMeter.DANGER;
-        } else if (this.limitMonth <= originalLimit / 2) {
-            this.expenseMeter = ExpenseMeter.ALERT;
-        } else {
-            this.expenseMeter = ExpenseMeter.SAVE;
-        }
+    public void expandLimith(double expenseValueRemoved) {
+        this.limitMonth += expenseValueRemoved;
+        this.expenseMeter = ExpenseMeter.value(this.limitMonth, originalLimit);
     }
 
     @Override

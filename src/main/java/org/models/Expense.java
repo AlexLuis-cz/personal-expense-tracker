@@ -22,17 +22,13 @@ public class Expense {
         return description;
     }
 
-    public String getCategory() {
-        return category;
-    }
 
     public double getValue() {
         return value;
     }
 
     public String getLOCAL_DATE() {
-        String dataFormat = formatter.format(this.LOCAL_DATE);
-        return dataFormat;
+        return formatter.format(this.LOCAL_DATE);
     }
 
     //Setters
@@ -50,6 +46,6 @@ public class Expense {
 
     @Override
     public String toString() {
-        return String.format("%s %s R$ %.2f %s", this.description, this.category, this.value, this.getLOCAL_DATE());
+        return String.format("Description:%s | Category:%s | Value:R$ %.2f | Date:%s", this.description, this.category, this.value, this.getLOCAL_DATE());
     }
 }

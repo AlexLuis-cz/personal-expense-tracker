@@ -42,7 +42,7 @@ public class MenuController {
                     System.out.print(user);
                     break;
                 default:
-                    System.out.printf("valor invalido%n");
+                    System.out.printf("invalid value%n");
                     break;
             }
         }
