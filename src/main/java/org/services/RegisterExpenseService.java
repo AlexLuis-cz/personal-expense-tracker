@@ -19,17 +19,18 @@ public class RegisterExpenseService implements RegisterExpense {
 
         System.out.print("Value:");
         double value = InputUtils.returnDouble();
+        InputUtils.returnString();
 
-        while (value <= 0) {
-            System.out.println("It is not possible to enter numbers equal to or below zero.");
-            System.out.print("Value:");
-            value = InputUtils.returnDouble();
+        if (!description.isBlank() && value > 0) {
+            //Expense registration with (Description, Category, Value, Monthly Limit, Current Data)
+            Expense expense = new Expense(description, category, value, LocalDate.now());
+            user.reduceLimitMonth(value);
+
+            user.getExpenseRepository().addExpense(expense);
+            return;
         }
 
-        //Expense registration with (Description, Category, Value, Monthly Limit, Current Data)
-        Expense expense = new Expense(description, category, value, LocalDate.now());
-        user.setLimitMonth(user.getLimitMonth() - expense.getValue());
-
-        user.getExpenseRepository().addExpense(expense);
+        System.out.println("It is not possible to enter numbers equal to or below zero.");
+        register(user);
     }
 }

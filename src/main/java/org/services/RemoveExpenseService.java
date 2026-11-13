@@ -9,18 +9,16 @@ public class RemoveExpenseService implements RemoveExpense {
 
     @Override
     public void removeExpense(User user) {
-        if(user.getExpenseRepository().getExpenses().isEmpty()){
+        if (user.getExpenseRepository().getExpenses().isEmpty()) {
             System.out.println("No expenses registered");
             return;
         }
 
         user.getExpenseRepository().listExpenses(user);
         System.out.print(RemoveTxt.removeInfoTxt());
-
-        System.out.print("Number:");
         int number = InputUtils.returnInt();
 
-        if (number - 1 >= user.getExpenseRepository().getExpenses().size()){
+        if (number - 1 >= user.getExpenseRepository().getExpenses().size() || number < 0 || number == 0) {
             System.out.println("invalid value");
             return;
         }
